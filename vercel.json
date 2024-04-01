@@ -23,7 +23,7 @@
     "public": true,
     "buildCommand": "vite build",
     "outputDirectory": "public",
-    "installCommand": "npm install --force",
+    "installCommand": "npm install --legacy-peer-deps",
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "false",
