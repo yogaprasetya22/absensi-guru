@@ -14,11 +14,16 @@
         {
             "src": "/(.*)",
             "dest": "/api/index.php"
+        },
+        {
+            "src": "/storage/(.*)",
+            "dest": "/public/storage/"
         }
     ],
     "public": true,
     "buildCommand": "vite build",
     "outputDirectory": "public",
+    "installCommand": "npm install --force",
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "false",
