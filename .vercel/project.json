@@ -1,11 +1,11 @@
 {
-  "projectId": "prj_hjAtQYsRrhGjnnE3uS4JLgKbO2Dp",
+  "projectId": "prj_Wuw8k62WMIwgkcvd9rS8BfqpT3GA",
   "orgId": "8tw51cbAnfhmiZBHhkNrl0qQ",
   "settings": {
-    "createdAt": 1712016375881,
+    "createdAt": 1712059490377,
     "framework": null,
     "devCommand": null,
-    "installCommand": "yarn && export LD_LIBRARY_PATH=/path/to/libssl.so.10:$LD_LIBRARY_PATH && yarn install",
+    "installCommand": null,
     "buildCommand": "vite build",
     "outputDirectory": "public",
     "rootDirectory": null,

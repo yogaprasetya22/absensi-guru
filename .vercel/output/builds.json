@@ -6,44 +6,14 @@
     "C:\\Users\\62896\\AppData\\Local\\pnpm\\global\\5\\node_modules\\vercel\\dist\\index.js",
     "build"
   ],
-  "builds": [
-    {
-      "require": "vercel-php",
-      "requirePath": "C:\\Users\\62896\\OneDrive\\Dokumen\\Mochammad_Yoga_Prasetya\\Tugas Akhir\\Aras\\.vercel\\builders\\node_modules\\vercel-php\\dist\\index.js",
-      "apiVersion": 3,
-      "use": "vercel-php@0.6.0",
-      "src": "api/index.php",
-      "config": {
-        "zeroConfig": true,
-        "functions": {
-          "api/index.php": {
-            "runtime": "vercel-php@0.6.0"
-          }
-        }
-      },
-      "error": {
-        "name": "TypeError",
-        "stack": "TypeError: Cannot set properties of undefined (setting 'mode')\n    at getPhpFiles (C:\\Users\\62896\\OneDrive\\Dokumen\\Mochammad_Yoga_Prasetya\\Tugas Akhir\\Aras\\.vercel\\builders\\node_modules\\vercel-php\\dist\\utils.js:53:34)\n    at async Object.build (C:\\Users\\62896\\OneDrive\\Dokumen\\Mochammad_Yoga_Prasetya\\Tugas Akhir\\Aras\\.vercel\\builders\\node_modules\\vercel-php\\dist\\index.js:34:12)\n    at async doBuild (C:\\Users\\62896\\AppData\\Local\\pnpm\\global\\5\\.pnpm\\vercel@33.5.3\\node_modules\\vercel\\dist\\index.js:170717:27)\n    at async main2 (C:\\Users\\62896\\AppData\\Local\\pnpm\\global\\5\\.pnpm\\vercel@33.5.3\\node_modules\\vercel\\dist\\index.js:170525:5)\n    at async main13 (C:\\Users\\62896\\AppData\\Local\\pnpm\\global\\5\\.pnpm\\vercel@33.5.3\\node_modules\\vercel\\dist\\index.js:199261:18)",
-        "message": "Cannot set properties of undefined (setting 'mode')"
-      }
-    },
-    {
-      "require": "@vercel/static-build",
-      "requirePath": "C:\\Users\\62896\\AppData\\Local\\pnpm\\global\\5\\.pnpm\\@vercel+static-build@2.4.0\\node_modules\\@vercel\\static-build\\dist\\index",
-      "apiVersion": 2,
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "zeroConfig": true,
-        "installCommand": "yarn ",
-        "buildCommand": "vite build",
-        "outputDirectory": "public"
-      }
-    }
-  ],
   "error": {
-    "name": "TypeError",
-    "stack": "TypeError: Cannot set properties of undefined (setting 'mode')\n    at getPhpFiles (C:\\Users\\62896\\OneDrive\\Dokumen\\Mochammad_Yoga_Prasetya\\Tugas Akhir\\Aras\\.vercel\\builders\\node_modules\\vercel-php\\dist\\utils.js:53:34)\n    at async Object.build (C:\\Users\\62896\\OneDrive\\Dokumen\\Mochammad_Yoga_Prasetya\\Tugas Akhir\\Aras\\.vercel\\builders\\node_modules\\vercel-php\\dist\\index.js:34:12)\n    at async doBuild (C:\\Users\\62896\\AppData\\Local\\pnpm\\global\\5\\.pnpm\\vercel@33.5.3\\node_modules\\vercel\\dist\\index.js:170717:27)\n    at async main2 (C:\\Users\\62896\\AppData\\Local\\pnpm\\global\\5\\.pnpm\\vercel@33.5.3\\node_modules\\vercel\\dist\\index.js:170525:5)\n    at async main13 (C:\\Users\\62896\\AppData\\Local\\pnpm\\global\\5\\.pnpm\\vercel@33.5.3\\node_modules\\vercel\\dist\\index.js:199261:18)",
-    "message": "Cannot set properties of undefined (setting 'mode')"
+    "name": "Error",
+    "stack": "Error: EPERM: operation not permitted, symlink '..\\@vercel\\build-utils' -> 'C:\\Users\\62896\\OneDrive\\Dokumen\\Mochammad_Yoga_Prasetya\\Tugas Akhir\\Aras\\.vercel\\builders\\node_modules\\@now\\build-utils'",
+    "message": "EPERM: operation not permitted, symlink '..\\@vercel\\build-utils' -> 'C:\\Users\\62896\\OneDrive\\Dokumen\\Mochammad_Yoga_Prasetya\\Tugas Akhir\\Aras\\.vercel\\builders\\node_modules\\@now\\build-utils'",
+    "errno": -4048,
+    "code": "EPERM",
+    "syscall": "symlink",
+    "path": "..\\@vercel\\build-utils",
+    "dest": "C:\\Users\\62896\\OneDrive\\Dokumen\\Mochammad_Yoga_Prasetya\\Tugas Akhir\\Aras\\.vercel\\builders\\node_modules\\@now\\build-utils"
   }
 }

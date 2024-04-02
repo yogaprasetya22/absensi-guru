@@ -6,17 +6,9 @@ export default function Fail({ auth }) {
         switch (role) {
             case 1:
                 return "/admin";
-            case 5:
-                return "/bkal";
-            case 4:
-                return "/kaprodi";
-            case 6:
-                return "/warek";
-            case 3:
-                return "/dosen-pa";
             case 2:
-                return "/mahasiswa";
-            default:
+                return "/kurikulum";
+            case 3:
                 return "/";
         }
     };
