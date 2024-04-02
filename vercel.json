@@ -20,7 +20,7 @@
             "dest": "/public/storage/"
         }
     ],
-    "installCommand": "yarn && composer install",
+    "installCommand": "yarn",
     "public": true,
     "buildCommand": "vite build",
     "outputDirectory": "public",
