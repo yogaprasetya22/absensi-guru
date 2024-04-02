@@ -20,15 +20,15 @@
             "dest": "/public/storage/"
         }
     ],
-    "installCommand": "yarn",
+    "installCommand": "yarn ",
     "public": true,
     "buildCommand": "vite build",
     "outputDirectory": "public",
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",
-        "APP_URL": "https://aras.vercel.app",
-        "APP_KEY": "base64:Naoi+dbbty6VVyf3uXYP01J6p81dH5QXykyWjYUDx/o=",
+        "APP_URL": "https://absensi-guru.vercel.app",
+        "APP_KEY": "base64:UrX3FE47qdV2OHzF415W7Lmc/4zCyz4UMyisDHcEVCE=",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
