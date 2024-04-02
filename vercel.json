@@ -20,14 +20,14 @@
             "dest": "/public/storage/"
         }
     ],
+    "installCommand": "yarn",
     "public": true,
     "buildCommand": "vite build",
     "outputDirectory": "public",
-    "installCommand": "npm install --legacy-peer-deps",
     "env": {
         "APP_ENV": "production",
-        "APP_DEBUG": "false",
-        "APP_URL": "https://yourproductionurl.com",
+        "APP_DEBUG": "true",
+        "APP_URL": "https://aras.vercel.app",
         "APP_KEY": "base64:Naoi+dbbty6VVyf3uXYP01J6p81dH5QXykyWjYUDx/o=",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
