@@ -42,6 +42,7 @@
         "DB_HOST": "gjr.h.filess.io",
         "DB_PORT": "3306",
         "DB_DATABASE": "absensismp_chickenuse",
-        "DB_USERNAME": "absensismp_chickenuse"
+        "DB_USERNAME": "absensismp_chickenuse",
+        "DB_PASSWORD": "faecd5b692ebdb8b5e48437f408067deb9ca7a0e"
     }
 }
