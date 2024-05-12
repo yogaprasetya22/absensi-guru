@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 
-export default function Jurusan({ data }) {
+export default function Guru({ guru }) {
     const [itemOffset, setItemOffset] = useState(0);
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
@@ -14,15 +14,15 @@ export default function Jurusan({ data }) {
         setLoading(true);
 
         const endOffset = parseInt(itemOffset) + parseInt(page);
-        const sortData = data
+        const sortData = guru
             .sort((a, b) => {
                 return a.id - b.id;
             })
             .slice(itemOffset, endOffset);
         setCurrentItems(sortData);
-        setPageCount(Math.ceil(data.length / page));
+        setPageCount(Math.ceil(guru.length / page));
         setLoading(false);
-    }, [itemOffset, data, page]);
+    }, [itemOffset, guru, page]);
 
     const handlePageClick = (event) => {
         window.scrollTo({
@@ -30,7 +30,7 @@ export default function Jurusan({ data }) {
             behavior: "smooth",
         });
 
-        const newOffset = (event.selected * page) % data.length;
+        const newOffset = (event.selected * page) % guru.length;
 
         setItemOffset(newOffset);
     };
@@ -42,9 +42,17 @@ export default function Jurusan({ data }) {
                         <div className="w-full t-0 px-5 -mt-5 absolute">
                             <div className="bg-violet-400/80 w-full rounded-md shadow-md h-[6rem] flex flex-row gap-2 justify-between items-center px-5">
                                 <div className="flex flex-row items-center justify-between w-full relative">
+                                    <div className="w-full p-2 flex justify-end absolute -bottom-[1rem] ">
+                                        <p className="text-md font-extrabold border-b-2 border-gray-500">
+                                            data guru :{" "}
+                                            <span className="text-gray-500 ">
+                                                {guru?.length}
+                                            </span>
+                                        </p>
+                                    </div>
                                     <div className="flex flex-col gap-2 items-center">
                                         <h1 className="font-extrabold text-blue-900 text-lg">
-                                            Daftar data
+                                            Daftar guru
                                         </h1>
                                         <p className="font-extrabold text-white text-md">
                                             SMPN XYZ
@@ -56,7 +64,7 @@ export default function Jurusan({ data }) {
                                     <div className="flex items-center gap-2 px-5 py-3">
                                         <button className="btn bg-gray-200/60 text-gray-500 rounded-md">
                                             <i className="fas fa-plus"></i> Add
-                                            Jurusan
+                                            Guru
                                         </button>
                                     </div>
                                 </div>
@@ -67,19 +75,39 @@ export default function Jurusan({ data }) {
                         {/* head */}
                         <thead>
                             <tr className="font-bold text-lg text-black">
-                                <th>Id</th>
+                                <th>Nuptk</th>
                                 <th>Name</th>
+                                <th>Jenis Kelamin</th>
+                                <th>No Hp</th>
+                                <th>Alamat</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         {currentItems.map((item, index) => (
                             <tbody key={index}>
                                 <tr>
-                                    <th>{item?.id}</th>
+                                    <th>{item?.guru.nuptk}</th>
                                     <td>
                                         <div className="font-bold">
-                                            {item?.jurusan}
+                                            {item?.name}
                                         </div>
+                                    </td>
+                                    <td>
+                                        <div className="font-bold">
+                                            {item?.guru.jk === "L"
+                                                ? "Laki-laki"
+                                                : "Perempuan"}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p className="font-bold">
+                                            {item?.guru?.telp}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p className="font-bold">
+                                            {item?.guru?.alamat}
+                                        </p>
                                     </td>
                                     <th className="flex gap-2">
                                         <button className="btn btn-ghost btn-md ">

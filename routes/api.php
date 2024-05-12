@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/absensi/list', [DhasboardController::class, 'index'])->name('absensi.list');
+Route::get('/absensi/list/{uuid}', [DhasboardController::class, 'index'])->name('absensi.list');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

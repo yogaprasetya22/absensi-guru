@@ -209,28 +209,28 @@ export default function DetailAbsensi({ presensiData: data_presensi }) {
                                                                   ?.kehadiran
                                                                   ?.kehadiran ===
                                                               "Hadir"
-                                                                ? "bg-green-500/90 text-white"
+                                                                ? "bg-green-500 text-white"
                                                                 : item
                                                                       ?.data_presensi
                                                                       ?.jam_masuk
                                                                       ?.kehadiran
                                                                       ?.kehadiran ===
                                                                   "Izin"
-                                                                ? "bg-yellow-500/90 text-white"
+                                                                ? "bg-yellow-500 text-white"
                                                                 : item
                                                                       ?.data_presensi
                                                                       ?.jam_masuk
                                                                       ?.kehadiran
                                                                       ?.kehadiran ===
                                                                   "Sakit"
-                                                                ? "bg-blue-500/90 text-white"
+                                                                ? "bg-blue-500 text-white"
                                                                 : item
                                                                       ?.data_presensi
                                                                       ?.jam_masuk
                                                                       ?.kehadiran
                                                                       ?.kehadiran ===
                                                                   "Terlambat"
-                                                                ? "bg-red-500/90 text-white"
+                                                                ? "bg-pink-500 text-white"
                                                                 : ""
                                                             : item
                                                                   ?.data_presensi
@@ -241,62 +241,112 @@ export default function DetailAbsensi({ presensiData: data_presensi }) {
                                                                   ?.kehadiran
                                                                   ?.kehadiran ===
                                                               "Hadir"
-                                                                ? "bg-green-500/90 text-white"
+                                                                ? "bg-green-500 text-white"
                                                                 : item
                                                                       ?.data_presensi
                                                                       ?.jam_keluar
                                                                       ?.kehadiran
                                                                       ?.kehadiran ===
                                                                   "Izin"
-                                                                ? "bg-yellow-500/90 text-white"
+                                                                ? "bg-yellow-500 text-white"
                                                                 : item
                                                                       ?.data_presensi
                                                                       ?.jam_keluar
                                                                       ?.kehadiran
                                                                       ?.kehadiran ===
                                                                   "Sakit"
-                                                                ? "bg-blue-500/90 text-white"
+                                                                ? "bg-blue-500 text-white"
                                                                 : item
                                                                       ?.data_presensi
                                                                       ?.jam_keluar
                                                                       ?.kehadiran
                                                                       ?.kehadiran ===
                                                                   "Terlambat"
-                                                                ? "bg-pink-500/90 text-white"
+                                                                ? "bg-pink-500 text-white"
                                                                 : item
                                                                       ?.data_presensi
                                                                       ?.jam_keluar
                                                                       ?.kehadiran
                                                                       ?.kehadiran ===
                                                                   "Alpa"
-                                                                ? "bg-red-500/90 text-white"
+                                                                ? "bg-red-500 text-white"
                                                                 : ""
-                                                            : "bg-red-500/90 text-white"
-                                                        : "bg-red-500/90 text-white"
+                                                            : "bg-red-500 text-white"
+                                                        : "bg-red-500 text-white"
                                                 }`}
                                             >
                                                 {item?.data_presensi
-                                                    .jam_masuk ||
-                                                item?.data_presensi
-                                                    .jam_keluar ? (
-                                                    item?.data_presensi
-                                                        .jam_masuk ? (
-                                                        item?.data_presensi
-                                                            .jam_masuk.kehadiran
-                                                            .kehadiran
-                                                    ) : item?.data_presensi
-                                                          .jam_keluar ? (
-                                                        item?.data_presensi
-                                                            .jam_keluar
-                                                            .kehadiran.kehadiran
-                                                    ) : (
-                                                        "-"
-                                                    )
-                                                ) : (
-                                                    <span className="text-red-500">
-                                                        Belum Absen
-                                                    </span>
-                                                )}
+                                                    ?.jam_masuk ||
+                                                item?.data_presensi?.jam_keluar
+                                                    ? item?.data_presensi
+                                                          ?.jam_masuk
+                                                        ? item?.data_presensi
+                                                              ?.jam_masuk
+                                                              ?.kehadiran
+                                                              ?.kehadiran ===
+                                                          "Hadir"
+                                                            ? "Hadir"
+                                                            : item
+                                                                  ?.data_presensi
+                                                                  ?.jam_masuk
+                                                                  ?.kehadiran
+                                                                  ?.kehadiran ===
+                                                              "Izin"
+                                                            ? "Izin"
+                                                            : item
+                                                                  ?.data_presensi
+                                                                  ?.jam_masuk
+                                                                  ?.kehadiran
+                                                                  ?.kehadiran ===
+                                                              "Sakit"
+                                                            ? "Sakit"
+                                                            : item
+                                                                  ?.data_presensi
+                                                                  ?.jam_masuk
+                                                                  ?.kehadiran
+                                                                  ?.kehadiran ===
+                                                              "Terlambat"
+                                                            ? "Terlambat"
+                                                            : ""
+                                                        : item?.data_presensi
+                                                              ?.jam_keluar
+                                                        ? item?.data_presensi
+                                                              ?.jam_keluar
+                                                              ?.kehadiran
+                                                              ?.kehadiran ===
+                                                          "Hadir"
+                                                            ? "Hadir"
+                                                            : item
+                                                                  ?.data_presensi
+                                                                  ?.jam_keluar
+                                                                  ?.kehadiran
+                                                                  ?.kehadiran ===
+                                                              "Izin"
+                                                            ? "Izin"
+                                                            : item
+                                                                  ?.data_presensi
+                                                                  ?.jam_keluar
+                                                                  ?.kehadiran
+                                                                  ?.kehadiran ===
+                                                              "Sakit"
+                                                            ? "Sakit"
+                                                            : item
+                                                                  ?.data_presensi
+                                                                  ?.jam_keluar
+                                                                  ?.kehadiran
+                                                                  ?.kehadiran ===
+                                                              "Terlambat"
+                                                            ? "Terlambat"
+                                                            : item
+                                                                  ?.data_presensi
+                                                                  ?.jam_keluar
+                                                                  ?.kehadiran
+                                                                  ?.kehadiran ===
+                                                              "Alpa"
+                                                            ? "Alpa"
+                                                            : ""
+                                                        : "Alpa"
+                                                    : "Alpa"}
                                             </div>
                                         </div>
                                     </td>

@@ -110,6 +110,13 @@ export default function LaporanAbsensi({ data_presensi }) {
                                         >
                                             <i className="text-blue-500 text-xl fas fa-print"></i>
                                         </button>
+                                        <Link
+                                            className="btn btn-ghost btn-md "
+                                            href={`/api/absensi/list/${item?.guru.uuid}`}
+                                            target="_blank"
+                                        >
+                                            <i className="text-blue-500 text-xl fas fa-eye"></i>
+                                        </Link>
                                     </th>
                                 </tr>
                             </tbody>

@@ -6,13 +6,7 @@ import {
     Circle,
     Polyline,
 } from "@react-google-maps/api";
-
-const SchoolArea = {
-    // Area sekolah dengan koordinat yang telah ditentukan
-    latitude: -6.3159484,
-    longitude: 106.6985583,
-    radius: 0.01, // Sekala kecil untuk contoh, dapat disesuaikan dengan kebutuhan
-};
+import { SchoolArea } from "@/Components/Example";
 
 export default function Map({ url }) {
     const { isLoaded } = useJsApiLoader({

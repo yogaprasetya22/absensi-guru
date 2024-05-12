@@ -77,11 +77,9 @@ class DhasboardController extends Controller
     //     }
     // }
 
-    public function index()
+    public function index($uuid)
     {
-        $guru = Guru::with(['user', 'kelas'])->whereHas('user', function ($query) {
-            $query->where('id', 3);
-        })->first();
+        $guru = Guru::with(['user', 'kelas'])->where('uuid', $uuid)->first();
 
         // Iterasi melalui bulan-bulan dari Januari hingga Desember
         for ($bulan = 1; $bulan <= 12; $bulan++) {
@@ -100,12 +98,12 @@ class DhasboardController extends Controller
 
                 // Jika presensi sudah ada, lanjut ke tanggal berikutnya
                 if ($existingPresensi) {
-                    continue;
+                    return response()->json(['message' => 'Presensi guru sudah ada untuk tahun ini'], 400);
                 }
 
                 // Membuat data jam masuk dan keluar secara acak
-                $jamMasuk = Carbon::createFromTime(rand(7, 9), rand(0, 5), rand(0, 5));
-                $jamKeluar = Carbon::createFromTime(rand(15, 17), rand(0, 5), rand(0, 5));
+                $jamMasuk = Carbon::createFromTime(rand(7, 9), rand(0, 15), rand(0, 26));
+                $jamKeluar = Carbon::createFromTime(rand(15, 17), rand(0, 15), rand(0, 26));
 
                 // Memeriksa apakah jam masuk terlambat
                 if ($jamMasuk->greaterThan(Carbon::createFromTime(8, 30))) {

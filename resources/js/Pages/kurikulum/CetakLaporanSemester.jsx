@@ -47,73 +47,78 @@ export default function CetakLaporanSemester({
     // }, []);
 
     return (
-        <div className="w-full flex flex-col gap-5 justify-center items-center px-5 py-2">
+        <div className="w-full flex flex-col gap-10 justify-center items-center px-5 py-2">
             <Head title={title} />
             <div className="w-full flex flex-row gap-5 justify-center items-center">
                 <h1 className="text-2xl font-bold text-gray-500">
-                    Cetak Laporan Semester {nama_guru}
+                    Cetak Laporan Semester
                 </h1>
             </div>
             {/* total hadir izin sakit terlambat */}
-            <div className="w-full flex flex-row gap-2 justify-end items-center">
-                <h1>Total</h1>
-                <h1 className="text-md font-bold text-gray-500">
-                    {data_presensi.length}
+            <div className="w-full flex flex-row gap-2 justify-between items-center px-20">
+                <h1 className="text-xl font-bold text-black w-full">
+                    Nama : {nama_guru}
                 </h1>
+                <div className="w-full flex flex-row gap-2 justify-end items-center text-xl">
+                    <h1>Total</h1>
+                    <h1 className="text-md font-bold text-gray-500">
+                        {data_presensi.length}
+                    </h1>
 
-                <h1>Hadir</h1>
-                <h1 className="text-md font-bold text-green-500">
-                    {
-                        data_presensi.filter(
-                            (data) =>
-                                data?.data_presensi.jam_masuk?.kehadiran
-                                    ?.kehadiran === "Hadir"
-                        ).length
-                    }
-                </h1>
+                    <h1>Hadir</h1>
+                    <h1 className="text-md font-bold text-green-500">
+                        {
+                            data_presensi.filter(
+                                (data) =>
+                                    data?.data_presensi.jam_masuk?.kehadiran
+                                        ?.kehadiran === "Hadir"
+                            ).length
+                        }
+                    </h1>
 
-                <h1>Izin</h1>
-                <h1 className="text-md font-bold text-yellow-500">
-                    {
-                        data_presensi.filter(
-                            (data) =>
-                                data?.data_presensi.jam_masuk?.kehadiran
-                                    ?.kehadiran === "Izin"
-                        ).length
-                    }
-                </h1>
+                    <h1>Izin</h1>
+                    <h1 className="text-md font-bold text-yellow-500">
+                        {
+                            data_presensi.filter(
+                                (data) =>
+                                    data?.data_presensi.jam_masuk?.kehadiran
+                                        ?.kehadiran === "Izin"
+                            ).length
+                        }
+                    </h1>
 
-                <h1>Sakit</h1>
-                <h1 className="text-md font-bold text-blue-500">
-                    {
-                        data_presensi.filter(
-                            (data) =>
-                                data?.data_presensi.jam_masuk?.kehadiran
-                                    ?.kehadiran === "Sakit"
-                        ).length
-                    }
-                </h1>
+                    <h1>Sakit</h1>
+                    <h1 className="text-md font-bold text-blue-500">
+                        {
+                            data_presensi.filter(
+                                (data) =>
+                                    data?.data_presensi.jam_masuk?.kehadiran
+                                        ?.kehadiran === "Sakit"
+                            ).length
+                        }
+                    </h1>
 
-                <h1>Terlambat</h1>
-                <h1 className="text-md font-bold text-pink-500">
-                    {
-                        data_presensi.filter(
-                            (data) =>
-                                data?.data_presensi.jam_masuk?.kehadiran
-                                    ?.kehadiran === "Terlambat"
-                        ).length
-                    }
-                </h1>
-                <h1>Alpa</h1>
-                <h1 className="text-md font-bold text-red-500">
-                    {
-                        data_presensi.filter(
-                            (data) =>
-                                data?.data_presensi.jam_masuk?.kehadiran
-                                    ?.kehadiran === "Alpa"
-                        ).length
-                    }
-                </h1>
+                    <h1>Terlambat</h1>
+                    <h1 className="text-md font-bold text-pink-500">
+                        {
+                            data_presensi.filter(
+                                (data) =>
+                                    data?.data_presensi.jam_masuk?.kehadiran
+                                        ?.kehadiran === "Terlambat"
+                            ).length
+                        }
+                    </h1>
+                    <h1>Alpa</h1>
+                    <h1 className="text-md font-bold text-red-500">
+                        {
+                            data_presensi.filter(
+                                (data) =>
+                                    data?.data_presensi?.jam_keluar?.kehadiran
+                                        ?.kehadiran === "Alpa"
+                            ).length
+                        }
+                    </h1>
+                </div>
             </div>
             {/* buatkan table biasa nama hari/tanggal */}
             {currentItems ? (
@@ -205,7 +210,7 @@ export default function CetakLaporanSemester({
                                                                       ?.kehadiran
                                                                       ?.kehadiran ===
                                                                   "Terlambat"
-                                                                ? "bg-red-500"
+                                                                ? "bg-pink-500"
                                                                 : ""
                                                             : data
                                                                   ?.data_presensi
@@ -317,7 +322,7 @@ export default function CetakLaporanSemester({
                                 {
                                     item.filter(
                                         (data) =>
-                                            data?.data_presensi.jam_masuk
+                                            data?.data_presensi?.jam_keluar
                                                 ?.kehadiran?.kehadiran ===
                                             "Alpa"
                                     ).length

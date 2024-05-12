@@ -243,10 +243,10 @@ class KurikulumController extends Controller
             $query->where('uuid', $request->uuid);
         })->first();
         // Mendapatkan tanggal awal bulan
-        $startDate = Carbon::create($request->tahun, $request->bulan, 1)->startOfMonth();
+        $startDate = Carbon::create($request->tahun, $bulan_awal, 1)->startOfMonth();
 
         // Mendapatkan tanggal akhir bulan
-        $endDate = Carbon::create($request->tahun, $request->bulan, 1)->endOfMonth();
+        $endDate = Carbon::create($request->tahun, $bulan_akhir, 1)->endOfMonth();
 
         // Array untuk menyimpan semua tanggal dalam bulan
         $datesMonth = [];
@@ -287,6 +287,12 @@ class KurikulumController extends Controller
                                 'kehadiran' => 'Alpa',
                             ]
                         ], // Atau kosongkan jika tidak ada data jam keluar
+                        'jam_masuk' => [
+                            'jam_masuk' => null,
+                            'kehadiran' => [
+                                'kehadiran' => 'Alpa',
+                            ]
+                        ], // Atau kosongkan jika tidak ada data jam masuk
                         'guru' => [
                             'user' => [
                                 'name' => $user_guru->name,

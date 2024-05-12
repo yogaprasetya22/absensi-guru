@@ -4,16 +4,10 @@ import { useGeolocated } from "react-geolocated";
 import { useJsApiLoader } from "@react-google-maps/api";
 import GoogleMapOutside from "@/Components/map/GoogleMapOutside";
 import AbsenCam from "@/Components/absen/AbsenCam";
+import { SchoolArea } from "@/Components/Example";
 
-const SchoolArea = {
-    // Area sekolah dengan koordinat yang telah ditentukan
-    latitude: -6.3159484,
-    longitude: 106.6985583,
-    radius: 0.01, // Sekala kecil untuk contoh, dapat disesuaikan dengan kebutuhan
-};
 
 export default function Absensi({ auth, data_presensi }) {
-    console.log(data_presensi);
     const { coords, isGeolocationAvailable, isGeolocationEnabled } =
         useGeolocated({
             positionOptions: {
