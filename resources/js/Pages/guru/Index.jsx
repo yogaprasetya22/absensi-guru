@@ -192,8 +192,8 @@ export default function Index({ absen_masuk, data_presensi }) {
                         </select>
                     </div>
                     {/* buatkan 4 blok yaitu Hadir Izin Sakit Terlambat */}
-                    <div className="flex flex-row justify-between gap-2 ">
-                        <div className="w-1/4 bg-white shadow-md rounded-md p-5">
+                    <div className="flex md:flex-row flex-col justify-between gap-2 ">
+                        <div className="md:w-1/4 w-full bg-white shadow-md rounded-md p-5">
                             <div className="flex flex-row gap-5 items-center">
                                 <i className="fas fa-user-check text-2xl text-pink-600"></i>
                                 <div className="flex flex-col gap-1 text-black">
@@ -204,15 +204,15 @@ export default function Index({ absen_masuk, data_presensi }) {
                                         {
                                             currentItems.filter(
                                                 (item) =>
-                                                    item.jam_masuk.kehadiran
-                                                        .kehadiran == "Hadir"
+                                                    item?.status_kehadiran
+                                                        ?.kehadiran == "Hadir"
                                             ).length
                                         }
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div className="w-1/4 bg-white shadow-md rounded-md p-5">
+                        <div className="md:w-1/4 w-full bg-white shadow-md rounded-md p-5">
                             <div className="flex flex-row gap-5 items-center">
                                 <i className="fas fa-user text-2xl text-blue-600"></i>
                                 <div className="flex flex-col gap-1 text-black">
@@ -223,15 +223,15 @@ export default function Index({ absen_masuk, data_presensi }) {
                                         {
                                             currentItems.filter(
                                                 (item) =>
-                                                    item.jam_masuk.kehadiran
-                                                        .kehadiran == "Izin"
+                                                    item?.status_kehadiran
+                                                        ?.kehadiran == "Izin"
                                             ).length
                                         }
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div className="w-1/4 bg-white shadow-md rounded-md p-5">
+                        <div className="md:w-1/4 w-full bg-white shadow-md rounded-md p-5">
                             <div className="flex flex-row gap-5 items-center">
                                 <i className="fab fa-confluence text-2xl text-green-600"></i>
                                 <div className="flex flex-col gap-1 text-black">
@@ -242,15 +242,15 @@ export default function Index({ absen_masuk, data_presensi }) {
                                         {
                                             currentItems.filter(
                                                 (item) =>
-                                                    item.jam_masuk.kehadiran
-                                                        .kehadiran == "Sakit"
+                                                    item?.status_kehadiran
+                                                        ?.kehadiran == "Sakit"
                                             ).length
                                         }
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div className="w-1/4 bg-white shadow-md rounded-md p-5">
+                        <div className="md:w-1/4 w-full bg-white shadow-md rounded-md p-5">
                             <div className="flex flex-row gap-5 items-center">
                                 <i className="fas fa-stopwatch text-2xl text-yellow-600"></i>
                                 <div className="flex flex-col gap-1 text-black">
@@ -261,9 +261,28 @@ export default function Index({ absen_masuk, data_presensi }) {
                                         {
                                             currentItems.filter(
                                                 (item) =>
-                                                    item.jam_masuk.kehadiran
-                                                        .kehadiran ==
+                                                    item?.status_kehadiran
+                                                        ?.kehadiran ==
                                                     "Terlambat"
+                                            ).length
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="md:w-1/4 w-full bg-white shadow-md rounded-md p-5">
+                            <div className="flex flex-row gap-5 items-center">
+                                <i className="fas fa-user-slash text-2xl text-red-600"></i>
+                                <div className="flex flex-col gap-1 text-black">
+                                    <p className="text-lg font-semibold">
+                                        Alpa
+                                    </p>
+                                    <p className="text-xl">
+                                        {
+                                            currentItems.filter(
+                                                (item) =>
+                                                    item?.status_kehadiran
+                                                        ?.kehadiran == "Alpa"
                                             ).length
                                         }
                                     </p>

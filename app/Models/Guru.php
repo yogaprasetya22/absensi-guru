@@ -17,21 +17,16 @@ class Guru extends Model
 
     protected $fillable = [
         'uuid',
-        'kelas_id',
         'user_id',
         'nuptk',
         'jk',
         'telp',
+        'alamat',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function kelas()
-    {
-        return $this->belongsTo(Kelas::class);
     }
 
     public function presensi_guru()

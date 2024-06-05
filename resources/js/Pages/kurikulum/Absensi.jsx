@@ -63,7 +63,6 @@ export default function Absensi({ data_presensi }) {
                             <tr className="font-bold text-lg text-black">
                                 <th>NUPTK</th>
                                 <th>Nama</th>
-                                <th>Kelas</th>
                                 <th>No Telp</th>
                                 <th>Alamat</th>
                                 <th>Action</th>
@@ -80,11 +79,6 @@ export default function Absensi({ data_presensi }) {
                                     <td>
                                         <div className="font-bold">
                                             {item?.guru.user.name}
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div className="font-bold">
-                                            {item?.guru.kelas.kelas}
                                         </div>
                                     </td>
                                     <td>

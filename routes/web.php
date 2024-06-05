@@ -55,18 +55,20 @@ Route::prefix('/kurikulum')->middleware(['auth', 'role:2', 'verified'])->group(f
     Route::get('/absensi-guru/{detail}', [KurikulumController::class, 'detail_absensi_guru'])->name('kurikulum.detail_absensi_guru');
     Route::get('/laporan-absensi', [KurikulumController::class, 'laporan_absensi'])->name('kurikulum.laporan_absensi');
     Route::get('/laporan-absensi/cetak-laporan', [KurikulumController::class, 'cetak_laporan_semester'])->name('kurikulum.cetak_laporan_semester');
-
-    // absensi
-    // Route::get('/absensi-guru', [KurikulumController::class, 'absensi'])->name('gukurikulumru.absensi');
-    // Route::get('/absensi-guru/{uuid}', [KurikulumController::class, 'detail_absensi'])->name('kurikulum.detail_absensi');
-    // Route::resource('absensi', AbsensiController::class)->except(['index', 'show', 'create']);
 });
 
 Route::prefix('admin')->middleware(['auth', 'role:1', 'verified'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
     Route::get('/kurikulum', [AdminController::class, 'kelola_kurikulum'])->name('admin.kurikulum');
     Route::get('/guru', [AdminController::class, 'kelola_guru'])->name('admin.guru');
-    Route::resource('guru', GuruController::class)->except(['index', 'jadwal']);
+
+    Route::post('/guru/store', [GuruController::class, 'store'])->name('guru.store');
+    Route::post('/guru/update', [GuruController::class, 'update'])->name('guru.update');
+    Route::delete('/guru/destroy', [GuruController::class, 'destroy'])->name('guru.destroy');
+
+    Route::post('/kurikulum/store', [KurikulumController::class, 'store'])->name('kurikulum.store');
+    Route::post('/kurikulum/update', [KurikulumController::class, 'update'])->name('kurikulum.update');
+    Route::delete('/kurikulum/destroy', [KurikulumController::class, 'destroy'])->name('kurikulum.destroy');
 });
 
 

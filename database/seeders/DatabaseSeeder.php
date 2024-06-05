@@ -28,10 +28,10 @@ class DatabaseSeeder extends Seeder
                 'name_role' => 'admin',
             ],
             [
-                'name_role' => 'guru',
+                'name_role' => 'kurikulum',
             ],
             [
-                'name_role' => 'siswa',
+                'name_role' => 'guru',
             ],
             // [
             //     'name_role' => 'gh',
@@ -64,22 +64,6 @@ class DatabaseSeeder extends Seeder
         // create data kehadiran
         Kehadiran::insert($kehadiran);
 
-        // create kelas 
-        $kelas = [
-            [
-                'kelas' => 'X',
-            ],
-            [
-                'kelas' => 'XI',
-            ],
-            [
-                'kelas' => 'XII',
-            ],
-        ];
-
-        // create data kelas
-        Kelas::insert($kelas);
-
         User::create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
@@ -108,39 +92,28 @@ class DatabaseSeeder extends Seeder
         $number_per_kelas = []; // Array untuk melacak nomor urut per kelas
         $index = 0;
 
-        foreach ($kelas as $key => $value) {
-            for ($i = 1; $i <= $guru_per_kelas; $i++) {
-                $index++;
-                // Random id matpel dari keseluruhan matpel
-                $kelas_id = ($key % count($kelas)) + 1; // Kalkulasi kelas_id
-                $jk = (rand(0, 1) == 0) ? 'L' : 'P';
+        for ($i = 1; $i <= $guru_per_kelas; $i++) {
+            $index++;
+            // Random id matpel dari keseluruhan matpel
+            $jk = (rand(0, 1) == 0) ? 'L' : 'P';
 
-                // Mengecek jika kelas_id sudah memiliki nomor urut
-                if (!isset($number_per_kelas[$kelas_id])) {
-                    $number_per_kelas[$kelas_id] = 1; // Inisialisasi nomor urut jika belum ada
-                }
 
-                $guru_number = sprintf("%03d", $number_per_kelas[$kelas_id]); // Menggunakan nomor urut untuk guru
-                $number_per_kelas[$kelas_id]++; // Menambah nomor urut untuk kelas berikutnya
+            $guru_data = User::create([
+                'name' => 'guru' . sprintf("%02d",  $index),
+                'email' => 'guru' . sprintf("%02d",  $index) . '@gmail.com',
+                'password' => bcrypt('asdasdasd'),
+                'role_id' => '3',
+                'created_at' => now(),
+            ]);
 
-                $guru_data = User::create([
-                    'name' => 'guru' . sprintf("%02d",  $index),
-                    'email' => 'guru' . sprintf("%02d",  $index) . '@gmail.com',
-                    'password' => bcrypt('asdasdasd'),
-                    'role_id' => '3',
-                    'created_at' => now(),
-                ]);
-
-                $guru_data->guru()->create([
-                    'uuid'  => str()->uuid(),
-                    'kelas_id' => (int)$kelas_id,
-                    'nuptk' => sprintf("%02d", $kelas_id) . '2020' . sprintf("%03d", $guru_number),
-                    'jk' =>  $jk,
-                    'telp' => Factory::create('id_ID')->phoneNumber,
-                    'alamat' => Factory::create('id_ID')->address,
-                    'created_at' => now(),
-                ]);
-            }
+            $guru_data->guru()->create([
+                'uuid'  => str()->uuid(),
+                'nuptk' => '2024' . sprintf("%02d",  $index),
+                'jk' =>  $jk,
+                'telp' => Factory::create('id_ID')->phoneNumber,
+                'alamat' => Factory::create('id_ID')->address,
+                'created_at' => now(),
+            ]);
         }
 
 

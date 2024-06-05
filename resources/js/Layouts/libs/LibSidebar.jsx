@@ -1,6 +1,9 @@
 import { validateRole } from "@/Components/Example";
+import { usePage } from "@inertiajs/react";
+import { useState, useEffect } from "react";
 
 export const MenuDashboardValidate = (user) => {
+    const { semester, tahun, user_guru } = usePage().props.auth;
     const MenuAdminDashboard = [
         {
             name: "Dashboard",
@@ -13,8 +16,8 @@ export const MenuDashboardValidate = (user) => {
             icon: "fas fa-chalkboard-teacher",
         },
         {
-            name: "Siswa",
-            url: `/${validateRole(user?.role_id)}/siswa`,
+            name: "Kurikulum",
+            url: `/${validateRole(user?.role_id)}/kurikulum`,
             icon: "fas fa-user-graduate",
         },
     ];
@@ -22,7 +25,9 @@ export const MenuDashboardValidate = (user) => {
     const MenuKurikulumDashboard = [
         {
             name: "Dashboard",
-            url: `/${validateRole(user?.role_id)}`,
+            url: `/${validateRole(
+                user?.role_id
+            )}?semester=${semester}&tahun=${tahun}&uuid=${user_guru[0]?.guru?.uuid}`,
             icon: "fas fa-th-large",
         },
         {

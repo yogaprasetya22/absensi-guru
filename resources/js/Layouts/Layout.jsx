@@ -31,11 +31,11 @@ export default function Layout({ children }) {
                             {children}
                         </main>
                     </div>
-                    {/* <footer className="w-full h-7 bg-white pl-52 flex justify-center items-center  absolute bottom-0">
+                    <footer className="w-full h-7 bg-white pl-52 flex justify-center items-center  absolute bottom-0">
                         <p className="text-gray-500 text-sm">
-                            © {new Date().getFullYear()} - BEASISWA
+                            © {new Date().getFullYear()} - SMP XYZ
                         </p>
-                    </footer> */}
+                    </footer>
                 </div>
             </div>
         </>

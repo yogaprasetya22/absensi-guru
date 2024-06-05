@@ -144,7 +144,7 @@ export default function HistoryAbsensi({ data_presensi }) {
                                             onClick={() => {
                                                 setUrl({
                                                     url: item?.jam_masuk
-                                                        .image_masuk,
+                                                        ?.image_masuk,
                                                     lat: item?.jam_masuk
                                                         .latitude,
                                                     lng: item?.jam_masuk
@@ -164,7 +164,7 @@ export default function HistoryAbsensi({ data_presensi }) {
                                             onClick={() => {
                                                 setUrl({
                                                     url: item?.jam_keluar
-                                                        .image_keluar,
+                                                        ?.image_keluar,
                                                     lat: item?.jam_keluar
                                                         .latitude,
                                                     lng: item?.jam_keluar
@@ -181,22 +181,61 @@ export default function HistoryAbsensi({ data_presensi }) {
                                     </td>
                                     <td>
                                         <div className="font-bold">
-                                            {item.jam_masuk ||
-                                            item.jam_keluar ? (
-                                                item.jam_masuk ? (
-                                                    item.jam_masuk.kehadiran
-                                                        .kehadiran
-                                                ) : item.jam_keluar ? (
-                                                    item.jam_keluar.kehadiran
-                                                        .kehadiran
-                                                ) : (
-                                                    "-"
-                                                )
-                                            ) : (
-                                                <span className="text-red-500">
-                                                    Belum Absen
-                                                </span>
-                                            )}
+                                            <div
+                                                className={`font-bold  p-2 rounded-md   ${
+                                                    item?.status_kehadiran
+                                                        ? item?.status_kehadiran
+                                                              ?.kehadiran ===
+                                                          "Hadir"
+                                                            ? "bg-green-500 text-white"
+                                                            : item
+                                                                  ?.status_kehadiran
+                                                                  ?.kehadiran ===
+                                                              "Izin"
+                                                            ? "bg-yellow-500 text-white"
+                                                            : item
+                                                                  ?.status_kehadiran
+                                                                  ?.kehadiran ===
+                                                              "Sakit"
+                                                            ? "bg-blue-500 text-white"
+                                                            : item
+                                                                  ?.status_kehadiran
+                                                                  ?.kehadiran ===
+                                                              "Terlambat"
+                                                            ? "bg-pink-500 text-white"
+                                                            : item
+                                                                  ?.status_kehadiran
+                                                                  ?.kehadiran ===
+                                                              "Alpa"
+                                                            ? "bg-red-500 text-white"
+                                                            : ""
+                                                        : "bg-red-500"
+                                                }`}
+                                            >
+                                                {item?.status_kehadiran
+                                                    ? item?.status_kehadiran
+                                                          ?.kehadiran ===
+                                                      "Hadir"
+                                                        ? "Hadir"
+                                                        : item?.status_kehadiran
+                                                              ?.kehadiran ===
+                                                          "Izin"
+                                                        ? "Izin"
+                                                        : item?.status_kehadiran
+                                                              ?.kehadiran ===
+                                                          "Sakit"
+                                                        ? "Sakit"
+                                                        : item?.status_kehadiran
+                                                              ?.kehadiran ===
+                                                          "Terlambat"
+                                                        ? "Terlambat"
+                                                        : item?.status_kehadiran
+                                                              ?.kehadiran ===
+                                                          "Alpa"
+                                                        ? "Alpa"
+                                                        : "Alpa"
+                                                    : "Alpa"}
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>

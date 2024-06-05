@@ -16,7 +16,7 @@ class PresensiGuru extends Model
     public $incrementing = false; // Tandai bahwa primary key tidak bersifat inkremental
 
     protected $fillable = [
-        'uuid', 'guru_uuid', 'kelas_id', 'tanggal', 'jam_masuk_id', 'jam_keluar_id',
+        'uuid', 'guru_uuid', 'tanggal', 'jam_masuk_id', 'jam_keluar_id', 'status_kehadiran_id'
     ];
 
     public function kurikulum()
@@ -29,9 +29,9 @@ class PresensiGuru extends Model
         return $this->belongsTo(Guru::class);
     }
 
-    public function kelas()
+    public function status_kehadiran(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Kelas::class);
+        return $this->belongsTo(Kehadiran::class, 'status_kehadiran_id', 'id');
     }
 
     public function jam_masuk()

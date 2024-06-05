@@ -1,4 +1,4 @@
-import Add from "@/Components/modal/Jadwal/Add";
+import Add from "@/Components/modal/user/Add";
 import Layout from "@/Layouts/Layout";
 import React from "react";
 import { useState, useEffect } from "react";
@@ -76,7 +76,6 @@ export default function Jadwal({ jadwal }) {
                         {/* head */}
                         <thead>
                             <tr className="font-bold text-lg text-black">
-                                <th>Kelas</th>
                                 <th>Tanggal</th>
                                 <th>PIC</th>
                                 <th>Action</th>
@@ -85,11 +84,6 @@ export default function Jadwal({ jadwal }) {
                         {currentItems?.map((item, index) => (
                             <tbody key={index}>
                                 <tr>
-                                    <td>
-                                        <div className="font-bold">
-                                            {item?.kelas.kelas}
-                                        </div>
-                                    </td>
                                     <td>
                                         <div className="font-bold">
                                             {moment(item?.tanggal)

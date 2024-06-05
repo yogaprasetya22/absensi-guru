@@ -66,7 +66,6 @@ export default function LaporanAbsensi({ data_presensi }) {
                             <tr className="font-bold text-lg text-black">
                                 <th>NUPTK</th>
                                 <th>Nama</th>
-                                <th>Kelas</th>
                                 <th>No Telp</th>
                                 <th>Alamat</th>
                                 <th>Action</th>
@@ -83,11 +82,6 @@ export default function LaporanAbsensi({ data_presensi }) {
                                     <td>
                                         <div className="font-bold">
                                             {item?.guru.user.name}
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div className="font-bold">
-                                            {item?.guru.kelas.kelas}
                                         </div>
                                     </td>
                                     <td>
@@ -110,13 +104,6 @@ export default function LaporanAbsensi({ data_presensi }) {
                                         >
                                             <i className="text-blue-500 text-xl fas fa-print"></i>
                                         </button>
-                                        <Link
-                                            className="btn btn-ghost btn-md "
-                                            href={`/api/absensi/list/${item?.guru.uuid}`}
-                                            target="_blank"
-                                        >
-                                            <i className="text-blue-500 text-xl fas fa-eye"></i>
-                                        </Link>
                                     </th>
                                 </tr>
                             </tbody>

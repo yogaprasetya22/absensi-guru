@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Checkbox from "@/Components/ui/Checkbox";
 import GuestLayout from "@/Layouts/GuestLayout";
 import InputError from "@/Components/ui/InputError";
-import InputLabel from "@/Components/ui/InputLabel";
+import InputLabel  from "@/Components/ui/InputLabel ";
 import PrimaryButton from "@/Components/ui/PrimaryButton";
 import TextInput from "@/Components/ui/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
@@ -29,6 +29,44 @@ export default function Login({ status, canResetPassword }) {
     return (
         <GuestLayout>
             <Head title="Log in" />
+            {/* <form action="#" method="POST" className="space-y-4">
+                <div>
+                    <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-gray-700"
+                    >
+                        Email
+                    </label>
+                    <input
+                        type="text"
+                        id="email"
+                        name="email"
+                        className="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
+                    />
+                </div>
+                <div>
+                    <label
+                        htmlFor="password"
+                        className="block text-sm font-medium text-gray-700"
+                    >
+                        Password
+                    </label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        className="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
+                    />
+                </div>
+                <div>
+                    <button
+                        type="submit"
+                        className="w-full bg-black text-white p-2 rounded-md hover:bg-gray-800 focus:outline-none focus:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors duration-300"
+                    >
+                        Sign Up
+                    </button>
+                </div>
+            </form> */}
 
             {status && (
                 <div className="mb-4 font-medium text-sm text-green-600">
@@ -36,15 +74,19 @@ export default function Login({ status, canResetPassword }) {
                 </div>
             )}
 
-            <form onSubmit={submit}>
+            <form onSubmit={submit} className="space-y-4 py-5">
                 <div>
-                    <InputLabel htmlFor="identifier" value="Email or NUPTK" />
+                    <InputLabel
+                        className="block text-sm font-medium text-gray-700"
+                        htmlFor="identifier"
+                        value="Email or NUPTK"
+                    />
                     <TextInput
                         id="identifier"
                         type="text"
                         name="identifier"
                         value={data.identifier}
-                        className="mt-1 block w-full"
+                        className="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
                         autoComplete="username"
                         isFocused={true}
                         onChange={(e) => setData("identifier", e.target.value)}
@@ -54,14 +96,18 @@ export default function Login({ status, canResetPassword }) {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <InputLabel
+                        className="block text-sm font-medium text-gray-700"
+                        htmlFor="password"
+                        value="Password"
+                    />
 
                     <TextInput
                         id="password"
                         type="password"
                         name="password"
                         value={data.password}
-                        className="mt-1 block w-full"
+                        className="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
                         autoComplete="current-password"
                         onChange={(e) => setData("password", e.target.value)}
                     />

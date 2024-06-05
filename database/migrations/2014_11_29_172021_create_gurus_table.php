@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('gurus', function (Blueprint $table) {
             $table->uuid('uuid')->primary();
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('kelas_id')->constrained('kelas')->onUpdate('cascade')->onDelete('cascade');
             $table->string('nuptk')->unique();
             $table->enum('jk', ['L', 'P']);
             $table->string('telp');

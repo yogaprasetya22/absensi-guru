@@ -1,4 +1,8 @@
+import Add from "@/Components/modal/user/Add";
+import Delete from "@/Components/modal/user/Delete";
+import Edit from "@/Components/modal/user/Edit";
 import Layout from "@/Layouts/Layout";
+import { useForm } from "@inertiajs/react";
 import React from "react";
 import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
@@ -9,6 +13,8 @@ export default function Guru({ guru }) {
     const [pageCount, setPageCount] = useState(0);
     const [Loading, setLoading] = useState(false);
     const [page, setPage] = useState(5);
+
+    const [dataModal, setDataModal] = useState([]);
 
     useEffect(() => {
         setLoading(true);
@@ -36,6 +42,9 @@ export default function Guru({ guru }) {
     };
     return (
         <Layout>
+            <Add title={"Tambah Guru"} />
+            <Edit title={"Edit Guru"} value={dataModal} />
+            <Delete title={"Hapus Guru"} value={dataModal} />
             <div className="bg-white flex flex-col gap-10 rounded-xl shadow-lg relative">
                 <div className="overflow-x-auto ">
                     <div className="bg-white w-full h-[6rem] rounded-t-md ">
@@ -62,7 +71,12 @@ export default function Guru({ guru }) {
                                 <div className="flex flex-row items-center gap-2">
                                     {/* add member */}
                                     <div className="flex items-center gap-2 px-5 py-3">
-                                        <button className="btn bg-gray-200/60 text-gray-500 rounded-md">
+                                        <button
+                                            onClick={() =>
+                                                window.my_modal_1.show()
+                                            }
+                                            className="btn bg-gray-200/60 text-gray-500 rounded-md"
+                                        >
                                             <i className="fas fa-plus"></i> Add
                                             Guru
                                         </button>
@@ -110,10 +124,22 @@ export default function Guru({ guru }) {
                                         </p>
                                     </td>
                                     <th className="flex gap-2">
-                                        <button className="btn btn-ghost btn-md ">
+                                        <button
+                                            className="btn btn-ghost btn-md"
+                                            onClick={() => {
+                                                setDataModal(item),
+                                                    window.my_modal_2.show();
+                                            }}
+                                        >
                                             <i className="text-green-500 text-xl fas fa-edit"></i>
                                         </button>
-                                        <button className="btn btn-ghost btn-md ">
+                                        <button
+                                            className="btn btn-ghost btn-md"
+                                            onClick={() => {
+                                                setDataModal(item),
+                                                    window.my_modal_3.show();
+                                            }}
+                                        >
                                             <i className="text-red-500 text-xl fas fa-trash-alt"></i>
                                         </button>
                                     </th>

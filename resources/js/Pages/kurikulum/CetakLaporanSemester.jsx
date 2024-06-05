@@ -11,7 +11,7 @@ export default function CetakLaporanSemester({
     title,
 }) {
     const [currentItems, setCurrentItems] = useState([]);
-    console.log(data_presensi);
+    console.log(currentItems);
 
     // mengambil data bulan dari data_presensi
     const getBulan = () => {
@@ -70,7 +70,7 @@ export default function CetakLaporanSemester({
                         {
                             data_presensi.filter(
                                 (data) =>
-                                    data?.data_presensi.jam_masuk?.kehadiran
+                                    data?.data_presensi.status_kehadiran
                                         ?.kehadiran === "Hadir"
                             ).length
                         }
@@ -81,7 +81,7 @@ export default function CetakLaporanSemester({
                         {
                             data_presensi.filter(
                                 (data) =>
-                                    data?.data_presensi.jam_masuk?.kehadiran
+                                    data?.data_presensi.status_kehadiran
                                         ?.kehadiran === "Izin"
                             ).length
                         }
@@ -92,7 +92,7 @@ export default function CetakLaporanSemester({
                         {
                             data_presensi.filter(
                                 (data) =>
-                                    data?.data_presensi.jam_masuk?.kehadiran
+                                    data?.data_presensi.status_kehadiran
                                         ?.kehadiran === "Sakit"
                             ).length
                         }
@@ -103,7 +103,7 @@ export default function CetakLaporanSemester({
                         {
                             data_presensi.filter(
                                 (data) =>
-                                    data?.data_presensi.jam_masuk?.kehadiran
+                                    data?.data_presensi.status_kehadiran
                                         ?.kehadiran === "Terlambat"
                             ).length
                         }
@@ -113,7 +113,7 @@ export default function CetakLaporanSemester({
                         {
                             data_presensi.filter(
                                 (data) =>
-                                    data?.data_presensi?.jam_keluar?.kehadiran
+                                    data?.data_presensi?.status_kehadiran
                                         ?.kehadiran === "Alpa"
                             ).length
                         }
@@ -178,80 +178,37 @@ export default function CetakLaporanSemester({
                                                 key={index}
                                                 className={`border border-gray-300  p-2 ${
                                                     data?.data_presensi
-                                                        ?.jam_masuk ||
-                                                    data?.data_presensi
-                                                        ?.jam_keluar
+                                                        ?.status_kehadiran
                                                         ? data?.data_presensi
-                                                              ?.jam_masuk
-                                                            ? data
-                                                                  ?.data_presensi
-                                                                  ?.jam_masuk
-                                                                  ?.kehadiran
-                                                                  ?.kehadiran ===
-                                                              "Hadir"
-                                                                ? "bg-green-500"
-                                                                : data
-                                                                      ?.data_presensi
-                                                                      ?.jam_masuk
-                                                                      ?.kehadiran
-                                                                      ?.kehadiran ===
-                                                                  "Izin"
-                                                                ? "bg-yellow-500"
-                                                                : data
-                                                                      ?.data_presensi
-                                                                      ?.jam_masuk
-                                                                      ?.kehadiran
-                                                                      ?.kehadiran ===
-                                                                  "Sakit"
-                                                                ? "bg-blue-500"
-                                                                : data
-                                                                      ?.data_presensi
-                                                                      ?.jam_masuk
-                                                                      ?.kehadiran
-                                                                      ?.kehadiran ===
-                                                                  "Terlambat"
-                                                                ? "bg-pink-500"
-                                                                : ""
+                                                              ?.status_kehadiran
+                                                              ?.kehadiran ===
+                                                          "Hadir"
+                                                            ? "bg-green-500"
                                                             : data
                                                                   ?.data_presensi
-                                                                  ?.jam_keluar
-                                                            ? data
-                                                                  ?.data_presensi
-                                                                  ?.jam_keluar
-                                                                  ?.kehadiran
+                                                                  ?.status_kehadiran
                                                                   ?.kehadiran ===
-                                                              "Hadir"
-                                                                ? "bg-green-500"
-                                                                : data
-                                                                      ?.data_presensi
-                                                                      ?.jam_keluar
-                                                                      ?.kehadiran
-                                                                      ?.kehadiran ===
-                                                                  "Izin"
-                                                                ? "bg-yellow-500"
-                                                                : data
-                                                                      ?.data_presensi
-                                                                      ?.jam_keluar
-                                                                      ?.kehadiran
-                                                                      ?.kehadiran ===
-                                                                  "Sakit"
-                                                                ? "bg-blue-500"
-                                                                : data
-                                                                      ?.data_presensi
-                                                                      ?.jam_keluar
-                                                                      ?.kehadiran
-                                                                      ?.kehadiran ===
-                                                                  "Terlambat"
-                                                                ? "bg-pink-500"
-                                                                : data
-                                                                      ?.data_presensi
-                                                                      ?.jam_keluar
-                                                                      ?.kehadiran
-                                                                      ?.kehadiran ===
-                                                                  "Alpa"
-                                                                ? "bg-red-500"
-                                                                : ""
-                                                            : "bg-red-500"
+                                                              "Izin"
+                                                            ? "bg-yellow-500"
+                                                            : data
+                                                                  ?.data_presensi
+                                                                  ?.status_kehadiran
+                                                                  ?.kehadiran ===
+                                                              "Sakit"
+                                                            ? "bg-blue-500"
+                                                            : data
+                                                                  ?.data_presensi
+                                                                  ?.status_kehadiran
+                                                                  ?.kehadiran ===
+                                                              "Terlambat"
+                                                            ? "bg-pink-500"
+                                                            : data
+                                                                  ?.data_presensi
+                                                                  ?.status_kehadiran
+                                                                  ?.kehadiran ===
+                                                              "Alpa"
+                                                            ? "bg-red-500"
+                                                            : ""
                                                         : "bg-red-500"
                                                 }`}
                                             >
@@ -275,9 +232,8 @@ export default function CetakLaporanSemester({
                                 {
                                     item.filter(
                                         (data) =>
-                                            data?.data_presensi.jam_masuk
-                                                ?.kehadiran?.kehadiran ===
-                                            "Hadir"
+                                            data?.data_presensi.status_kehadiran
+                                                .kehadiran === "Hadir"
                                     ).length
                                 }
                             </h1>
@@ -287,9 +243,8 @@ export default function CetakLaporanSemester({
                                 {
                                     item.filter(
                                         (data) =>
-                                            data?.data_presensi.jam_masuk
-                                                ?.kehadiran?.kehadiran ===
-                                            "Izin"
+                                            data?.data_presensi.status_kehadiran
+                                                .kehadiran === "Izin"
                                     ).length
                                 }
                             </h1>
@@ -299,9 +254,8 @@ export default function CetakLaporanSemester({
                                 {
                                     item.filter(
                                         (data) =>
-                                            data?.data_presensi.jam_masuk
-                                                ?.kehadiran?.kehadiran ===
-                                            "Sakit"
+                                            data?.data_presensi.status_kehadiran
+                                                .kehadiran === "Sakit"
                                     ).length
                                 }
                             </h1>
@@ -311,9 +265,8 @@ export default function CetakLaporanSemester({
                                 {
                                     item.filter(
                                         (data) =>
-                                            data?.data_presensi.jam_masuk
-                                                ?.kehadiran?.kehadiran ===
-                                            "Terlambat"
+                                            data?.data_presensi.status_kehadiran
+                                                .kehadiran === "Terlambat"
                                     ).length
                                 }
                             </h1>
@@ -322,9 +275,9 @@ export default function CetakLaporanSemester({
                                 {
                                     item.filter(
                                         (data) =>
-                                            data?.data_presensi?.jam_keluar
-                                                ?.kehadiran?.kehadiran ===
-                                            "Alpa"
+                                            data?.data_presensi
+                                                ?.status_kehadiran
+                                                ?.kehadiran === "Alpa"
                                     ).length
                                 }
                             </h1>

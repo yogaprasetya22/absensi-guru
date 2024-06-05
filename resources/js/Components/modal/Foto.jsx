@@ -16,7 +16,7 @@ export default function Foto({ url }) {
                 <div className=" w-full flex flex-col gap-5">
                     <div className="w-full flex flex-row justify-center items-center">
                         <h1 className="text-2xl font-bold text-gray-500">
-                            Add Jadwal
+                           Foto
                         </h1>
                     </div>
                     <img

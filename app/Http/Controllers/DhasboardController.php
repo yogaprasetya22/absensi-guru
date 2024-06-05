@@ -13,74 +13,43 @@ use Inertia\Inertia;
 
 class DhasboardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    // public function index()
-    // {
-    //     for ($i = 0; $i < 15; $i++) {
-
-    //         $guru = Guru::with(['user', 'kelas'])->whereHas('user', function ($query) {
-    //             $query->where('id', 3);
-    //         })->first();
-
-    //         $tanggal = now()->setDay($i)->format('Y-m-d');
-
-    //         // Cek apakah presensi guru dengan user dan tanggal yang sama sudah ada
-    //         $existingPresensi = PresensiGuru::with(['guru.user'])
-    //             ->where('guru_uuid', $guru->uuid)
-    //             ->where('tanggal', $tanggal)
-    //             ->exists();
-
-    //         if ($existingPresensi) {
-    //             // Jika presensi sudah ada, beri respon bahwa guru sudah melakukan absen
-    //             return response()->json(['message' => 'Presensi guru sudah ada untuk tanggal ini'], 400);
-    //         }
-
-    //         $data_jam_masuk = JamMasuk::create([
-    //             'jam_masuk' => now()->setHour(7)->format('H:i:s'),
-    //             'longtitude' =>
-    //             (float) str_replace(
-    //                 ',',
-    //                 '.',
-    //                 "106,6985583"
-    //             ),
-    //             'latitude' => (float) str_replace(',', '.', "-6,3159484"),
-    //             'kehadiran_id' => 1,
-    //             'image_masuk' => "storage/image_1711908317.jpg",
-    //         ]);
-
-    //         $data_jam_keluar = JamKeluar::create([
-    //             'jam_keluar' => now()->setHour(16)->format('H:i:s'),
-    //             'longtitude' =>
-    //             (float) str_replace(
-    //                 ',',
-    //                 '.',
-    //                 "106,6985583"
-    //             ),
-    //             'latitude' => (float) str_replace(',', '.', "-6,3159484"),
-    //             'kehadiran_id' => 1,
-    //             'image_keluar' =>
-    //             "storage/image_1711908311.jpg",
-    //         ]);
-
-    //         PresensiGuru::create([
-    //             'uuid' => str()->uuid(),
-    //             'guru_uuid' => $guru->uuid,
-    //             'kelas_id' => $guru->kelas_id,
-    //             'tanggal' => now()->setDay($i)->format('Y-m-d'),
-    //             'jam_masuk_id' => $data_jam_masuk->id,
-    //             'jam_keluar_id' => $data_jam_keluar->id,
-    //         ]);
-
-    //         return response()->json(['message' => 'Presensi guru berhasil'], 200);
-    //     }
-    // }
 
     public function index($uuid)
     {
-        $guru = Guru::with(['user', 'kelas'])->where('uuid', $uuid)->first();
+        function getRandomNumber()
+        {
+            // Definisikan array dengan probabilitas yang diinginkan
+            $numbers = array_merge(
+                array_fill(0, 80, 1),  // 80% untuk angka 1
+                array_fill(0, 5, 2),   // 5% untuk angka 2
+                array_fill(0, 5, 3),   // 5% untuk angka 3
+                array_fill(0, 5, 4),   // 5% untuk angka 4
+                array_fill(0, 5, 5)    // 5% untuk angka 5
+            );
 
+            // Acak array
+            shuffle($numbers);
+
+            // Ambil satu angka acak dari array
+            return $numbers[array_rand($numbers)];
+        }
+        function getRandomNumberKeluar()
+        {
+            // Definisikan array dengan probabilitas yang diinginkan
+            $numbers = array_merge(
+                array_fill(0, 80, 1),  // 80% untuk angka 1
+                array_fill(0, 5, 2),   // 5% untuk angka 2
+            );
+
+            // Acak array
+            shuffle($numbers);
+
+            // Ambil satu angka acak dari array
+            return $numbers[array_rand($numbers)];
+        }
+
+        $guru = Guru::with(['user'])->where('uuid', $uuid)->first();
+        $data = [];
         // Iterasi melalui bulan-bulan dari Januari hingga Desember
         for ($bulan = 1; $bulan <= 12; $bulan++) {
             // Mendapatkan jumlah hari dalam bulan yang sedang diproses
@@ -102,32 +71,19 @@ class DhasboardController extends Controller
                 }
 
                 // Membuat data jam masuk dan keluar secara acak
-                $jamMasuk = Carbon::createFromTime(rand(7, 9), rand(0, 15), rand(0, 26));
-                $jamKeluar = Carbon::createFromTime(rand(15, 17), rand(0, 15), rand(0, 26));
+                $jamMasuk = Carbon::createFromTime(rand(6, 8), rand(0, 15), rand(0, 26));
+                $jamKeluar = Carbon::createFromTime(rand(13, 15), rand(0, 15), rand(0, 26));
 
-                // Memeriksa apakah jam masuk terlambat
-                if ($jamMasuk->greaterThan(Carbon::createFromTime(8, 30))) {
-                    // Jika terlambat, atur kehadiran_id menjadi 4 (terlambat)
-                    $kehadiranMasukId = 4;
-                } else {
-                    $kehadiranMasukId = 1; // Jika tidak terlambat, atur kehadiran_id menjadi 1 (hadir tepat waktu)
-                }
+                $kehadiranMasukId = getRandomNumber();
 
-                // Memeriksa apakah jam keluar lebih awal
-                if ($jamKeluar->lessThan(Carbon::createFromTime(16, 30))) {
-                    // Jika lebih awal, atur kehadiran_id menjadi 4 (pulang lebih awal)
-                    $kehadiranKeluarId = 4;
-                } else {
-                    $kehadiranKeluarId = 1; // Jika tidak lebih awal, atur kehadiran_id menjadi 1 (pulang tepat waktu)
-                }
-
+                $kehadiranKeluarId = getRandomNumberKeluar();
                 // Membuat entri baru untuk jam masuk
                 $data_jam_masuk = JamMasuk::create([
                     'jam_masuk' => $jamMasuk->format('H:i:s'),
                     'longtitude' => (float) str_replace(',', '.', "106,6985583"),
                     'latitude' => (float) str_replace(',', '.', "-6,3159484"),
                     'kehadiran_id' => $kehadiranMasukId, // Menggunakan kehadiran_id sesuai dengan kondisi
-                    'image_masuk' => "storage/image_1711908317.jpg",
+                    'image_masuk' => "storage/selfi.png",
                 ]);
 
                 // Membuat entri baru untuk jam keluar
@@ -136,22 +92,32 @@ class DhasboardController extends Controller
                     'longtitude' => (float) str_replace(',', '.', "106,6985583"),
                     'latitude' => (float) str_replace(',', '.', "-6,3159484"),
                     'kehadiran_id' => $kehadiranKeluarId, // Menggunakan kehadiran_id sesuai dengan kondisi
-                    'image_keluar' => "storage/image_1711908311.jpg",
+                    'image_keluar' => "storage/selfi.png",
                 ]);
 
                 // Membuat entri baru untuk presensi guru
                 PresensiGuru::create([
                     'uuid' => str()->uuid(),
                     'guru_uuid' => $guru->uuid,
-                    'kelas_id' => $guru->kelas_id,
                     'tanggal' => $tanggal,
+                    'status_kehadiran_id' => $kehadiranKeluarId == 2 ? $kehadiranKeluarId : $kehadiranMasukId,
                     'jam_masuk_id' => $data_jam_masuk->id,
                     'jam_keluar_id' => $data_jam_keluar->id,
                 ]);
+                $data[] = [
+                    'tanggal' => $tanggal,
+                    'jam_masuk' => $jamMasuk->format('H:i:s'),
+                    'jam_keluar' => $jamKeluar->format('H:i:s'),
+                    'kehadiran_masuk_id' => $kehadiranMasukId,
+                    'kehadiran_keluar_id' => $kehadiranKeluarId,
+                ];
             }
         }
 
-        return response()->json(['message' => 'Presensi guru berhasil'], 200);
+        return response()->json([
+            'count' => count($data),
+            'data' => $data,
+        ]);
     }
 
 
@@ -175,9 +141,13 @@ class DhasboardController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(user $user)
+    public function show()
     {
-        //
+        // data guru terakhir first
+        $data = Guru::with(['user'])->latest()->first()->user_id;
+        return response()->json([
+            'count' => $data,
+        ]);
     }
 
     /**

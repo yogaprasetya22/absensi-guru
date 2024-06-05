@@ -49,18 +49,9 @@ class AbsensiController extends Controller
         // Path file yang disimpan di dalam penyimpanan
         $filePath = 'storage/' . $filename;
 
-        $JamMasuk = now()->format('H:i:s');
-
-        // Tentukan status kehadiran berdasarkan jam keluar
-        if (strtotime($JamMasuk) >= strtotime('08:30')) {
-            $statusKehadiran = 'Terlambat';
-        } else {
-            $statusKehadiran = 'Hadir';
-        }
-
         $id = $request->id;
         $guru = User::with(['guru.kelas'])->where('role_id', 3)->where('id', $id)->first();
-        $kehadiran = Kehadiran::where('kehadiran', $statusKehadiran)->first();
+        $kehadiran = Kehadiran::where('kehadiran', $request->status)->first();
         $data_presensi = PresensiGuru::with(['guru.kelas', 'guru.user', 'jam_masuk', 'jam_keluar'])
             ->whereHas('guru.user', function ($query) use ($id) {
                 $query->where('id', $id);
@@ -71,8 +62,8 @@ class AbsensiController extends Controller
         if ($data_presensi) {
             $data_jam_masuk = JamMasuk::create([
                 'jam_masuk' => now()->format('H:i:s'),
-                'longtitude' => (float) str_replace(',', '.', $request->location[1]),
-                'latitude' => (float) str_replace(',', '.', $request->location[0]),
+                'longtitude' => (float) str_replace(',', '.', $request?->location[1]),
+                'latitude' => (float) str_replace(',', '.', $request?->location[0]),
                 'kehadiran_id' => $kehadiran->id,
                 'image_masuk' => $filePath,
             ]);
@@ -83,6 +74,7 @@ class AbsensiController extends Controller
                 'kelas_id' => $guru->guru->kelas_id,
                 'tanggal' => now()->format('Y-m-d'),
                 'jam_masuk_id' => $data_jam_masuk->id,
+                'status_kehadiran' => $request->status,
             ]);
         } else {
             return Redirect::route('guru')->with('error', 'Anda Sudah Melakukan Absensi');
@@ -109,24 +101,16 @@ class AbsensiController extends Controller
         // Path file yang disimpan di dalam penyimpanan
         $filePath = 'storage/' . $filename;
 
-        $jamKeluar = now()->format('H:i:s');
-
-        // Tentukan status kehadiran berdasarkan jam keluar
-        if (strtotime($jamKeluar) > strtotime('16:30')) {
-            $statusKehadiran = 'Terlambat';
-        } else {
-            $statusKehadiran = 'Hadir';
-        }
-
         $id = $request->id;
         $guru = User::with(['guru.kelas'])->where('role_id', 3)->where('id', $id)->first();
-        $kehadiran = Kehadiran::where('kehadiran', $statusKehadiran)->first();
+        $kehadiran = Kehadiran::where('kehadiran', $request->status)->first();
         $data_presensi = PresensiGuru::with(['guru.kelas', 'guru.user', 'jam_masuk', 'jam_keluar'])
             ->whereHas('guru.user', function ($query) use ($id) {
                 $query->where('id', $id);
             })
             ->where('tanggal', now()->format('Y-m-d'))
             ->first();
+
 
         if ($data_presensi) {
             $data_jam_keluar = JamKeluar::create([
@@ -137,12 +121,20 @@ class AbsensiController extends Controller
                 'image_keluar' => $filePath,
             ]);
 
-            PresensiGuru::where('guru_uuid', $guru->guru->uuid)
-                ->where('kelas_id', $guru->guru->kelas_id)
-                ->where('tanggal', now()->format('Y-m-d'))
-                ->update([
-                    'jam_keluar_id' => $data_jam_keluar->id,
-                ]);
+            if ($request->status == 'Izin') {
+                PresensiGuru::where('guru_uuid', $guru->guru->uuid)
+                    ->where('tanggal', now()->format('Y-m-d'))
+                    ->update([
+                        'jam_keluar_id' => $data_jam_keluar->id,
+                        'status_kehadiran' => $request->status,
+                    ]);
+            } else {
+                PresensiGuru::where('guru_uuid', $guru->guru->uuid)
+                    ->where('tanggal', now()->format('Y-m-d'))
+                    ->update([
+                        'jam_keluar_id' => $data_jam_keluar->id,
+                    ]);
+            }
         } else {
             return Redirect::route('guru')->with('error', 'Anda Belum Melakukan Absensi Masuk');
         }

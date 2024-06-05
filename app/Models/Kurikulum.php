@@ -16,17 +16,15 @@ class Kurikulum extends Model
     public $incrementing = false; // Tandai bahwa primary key tidak bersifat inkremental
 
     protected $fillable = [
-        'uuid', 'user_id', 'kelas_id', 'tanggal',
+        'uuid',
+        'user_id',
+        'jk',
+        'telp',
+        'alamat',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-
-    public function kelas()
-    {
-        return $this->belongsTo(Kelas::class);
-    }
-
 }

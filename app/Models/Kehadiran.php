@@ -10,7 +10,13 @@ class Kehadiran extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
     public $timestamps = false;
+
+    public function presensi()
+    {
+        return $this->hasOne(PresensiGuru::class);
+    }
 
     public function jam_masuk()
     {

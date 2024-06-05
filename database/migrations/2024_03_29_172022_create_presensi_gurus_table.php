@@ -15,7 +15,8 @@ return new class extends Migration
             $table->uuid('uuid')->primary();
             $table->uuid('guru_uuid');
             $table->foreign('guru_uuid')->references('uuid')->on('gurus');
-            $table->foreignId('kelas_id');
+            $table->unsignedBigInteger('status_kehadiran_id')->nullable();
+            $table->foreign('status_kehadiran_id')->references('id')->on('kehadirans');
             $table->date('tanggal');
             $table->foreignId('jam_masuk_id');
             $table->foreignId('jam_keluar_id')->nullable();

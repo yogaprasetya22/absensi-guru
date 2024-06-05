@@ -22,10 +22,18 @@ class AdminController extends Controller
 
     public function kelola_guru()
     {
-        $guru = User::with(['guru.kelas'])->where('role_id', 2)->latest()->get();
+        $guru = User::with(['guru'])->where('role_id', 3)->latest()->get();
         return Inertia::render('admin/Guru', [
             'title' => 'Kelola Guru',
             'guru' => $guru,
+        ]);
+    }
+    public function kelola_kurikulum()
+    {
+        $kurikulum = User::with(['kurikulum'])->where('role_id', 2)->latest()->get();
+        return Inertia::render('admin/Kurikulum', [
+            'title' => 'Kelola Kurikulum',
+            'kurikulum' => $kurikulum,
         ]);
     }
 

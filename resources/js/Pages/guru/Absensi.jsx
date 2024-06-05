@@ -34,7 +34,7 @@ export default function Absensi({ auth, data_presensi }) {
     });
 
     return !isGeolocationAvailable ? (
-        <Layout>
+        <Layout >
             <div className="flex justify-center">
                 Browser tidak mendukung location
             </div>
@@ -109,11 +109,11 @@ export default function Absensi({ auth, data_presensi }) {
                                     <div className="flex flex-col gap-2">
                                         <p className="text-sm">Jam Keluar</p>
                                         {data_presensi &&
-                                        data_presensi.jam_keluar ? (
+                                        data_presensi.jam_masuk ? (
                                             <p className="text-xl">
                                                 {
-                                                    data_presensi.jam_keluar
-                                                        .jam_keluar
+                                                    data_presensi.jam_masuk
+                                                        .jam_masuk
                                                 }
                                             </p>
                                         ) : (
@@ -123,10 +123,10 @@ export default function Absensi({ auth, data_presensi }) {
                                     <div className="flex flex-col gap-2">
                                         <p className="text-sm">Status</p>
                                         {data_presensi &&
-                                        data_presensi.jam_keluar ? (
+                                        data_presensi.jam_masuk ? (
                                             <p className="text-sm font-semibold">
                                                 {
-                                                    data_presensi.jam_keluar
+                                                    data_presensi.jam_masuk
                                                         .kehadiran.kehadiran
                                                 }
                                             </p>
